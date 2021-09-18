@@ -17,6 +17,6 @@
     [JSInvokable("SimpleMDE.UpdateTextFromServer")]
     public static void TextChanged(string[] changedText)
     {
-
+        Console.WriteLine("\"" + string.Join("\", \"", changedText) + "\"");
     }
 }
