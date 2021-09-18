@@ -1,0 +1,22 @@
+﻿<textarea @ref="simplemde" />
+
+@code {
+    [Inject]
+    IJSRuntime JS { get; set; }
+
+    ElementReference simplemde { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("Editor.init", simplemde);
+        }
+    }
+
+    [JSInvokable("SimpleMDE.UpdateTextFromServer")]
+    public static void TextChanged(string[] changedText)
+    {
+
+    }
+}
