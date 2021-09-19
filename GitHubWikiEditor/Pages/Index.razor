@@ -4,4 +4,27 @@
 
 Welcome to your new app.
 
-<SimpleMDE />
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <SimpleMDE @ref="firstEditor" OnTextChanged="TextChanged" />
+        </div>
+        <div class="col-6">
+            <SimpleMDE @ref="secondEditor" OnTextChanged="TextChanged" />
+        </div>
+    </div>
+</div>
+
+@code {
+    SimpleMDE firstEditor;
+    SimpleMDE secondEditor;
+
+    void TextChanged(TextChangedArgs args)
+    {
+        Console.WriteLine(args);
+
+        // emulate a broadcast
+        firstEditor.UpdateText(args);
+        secondEditor.UpdateText(args);
+    }
+}
